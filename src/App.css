@@ -1,0 +1,20 @@
+.appWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.menuWrapper {
+  width: 50px;
+  height: 100%;
+}
+
+.editorWrapper {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.viewerWrapper {
+  flex: 1;
+  overflow-y: scroll;
+}
