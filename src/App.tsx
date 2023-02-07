@@ -47,12 +47,19 @@ function App() {
       <div className="editorWrapper">
         <Editor
           name={name}
+          setName={setName}
           role={role}
+          setRole={setRole}
           qualification={qualification}
+          setQualification={setQualification}
           biography={biography}
+          setBiography={setBiography}
           pr={pr}
+          setPr={setPr}
           skill={skill}
+          setSkill={setSkill}
           performance={performance}
+          setPerformance={setPerformance}
         />
       </div>
       <div className="viewerWrapper">

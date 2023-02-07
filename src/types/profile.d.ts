@@ -12,6 +12,7 @@ export type Skill = {
   workExperience: boolean
 };
 export type Performance = {
+  name: string,
   image: string[],
   overview: string,
   team: string,

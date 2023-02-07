@@ -1,4 +1,164 @@
 #viewer {
   width: 100%;
-  height: 100%;
+  padding: 20px 15px;
+  word-wrap: break-word;
 }
+
+#viewer .head {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#viewer .item {
+  margin-top: 20px;
+}
+
+#viewer .itemName {
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px 10px;
+}
+
+#viewer .itemName::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: "";
+  width: 5px;
+  height: 100%;
+  background-color: gray;
+}
+
+#viewer .itemContent {
+  margin-top: 10px;
+}
+
+#viewer .section1 {
+  display: flex;
+}
+
+#viewer .section1 .section1Left {
+  flex: 1;
+}
+
+#viewer .section1 .section1Right {
+  flex: 2;
+}
+
+#viewer .biographyList {
+  border-right: 1px solid lightslategrey;
+  border-left: 1px solid lightslategrey;
+  border-bottom: 1px solid lightslategrey;
+}
+
+#viewer .biographyItem{
+  border-top: 1px solid lightslategrey;
+  display: flex;
+  align-items: center;
+}
+
+#viewer .biographyPeriod {
+  width: 150px;
+  text-align: center;
+  padding: 5px;
+}
+
+#viewer .biographyOverview {
+  flex: 1;
+  border-left: 1px solid lightslategrey;
+  padding: 5px;
+}
+
+#viewer .skillItem:not(:first-child) {
+  margin-top: 15px;
+}
+
+#viewer .skillCategory {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#viewer .skillDescription {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#viewer .skillName {
+  width: 49%;
+  border-bottom: 1px solid lightslategrey;
+  padding: 5px 85px 5px 5px;
+}
+
+#viewer .skillName.isWorkExperience {
+  position: relative;
+}
+
+#viewer .skillName.isWorkExperience::after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0%, -50%);
+  content: "実務経験有";
+  font-size: 12px;
+  color: white;
+  background-color: gray;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+#viewer .performanceName {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#viewer .performanceItem {
+  display: flex;
+  justify-content: space-between;
+  min-height: 400px;
+}
+
+#viewer .performanceItem:not(:first-child) {
+  margin-top: 20px;
+}
+
+#viewer .performanceImageList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px 0px;
+  width: 49%;
+} 
+
+#viewer .performanceImageItem {
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+#viewer .performanceImageBody {
+  position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* bottom: 0; */
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#viewer .performanceTextWrapper {
+  width: 49%;
+} 
+
+#viewer .performanceText:not(:first-child) {
+  margin-top: 10px;
+}
+
+#viewer .performanceTextHead {
+  font-size: 18px;
+  font-weight: bold;
+} 
