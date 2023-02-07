@@ -110,6 +110,10 @@
   border-radius: 10px;
 }
 
+#viewer .performanceWrapper:not(:first-child) {
+  margin-top: 20px;
+}
+
 #viewer .performanceName {
   font-size: 18px;
   font-weight: bold;
@@ -122,7 +126,7 @@
   min-height: 400px;
 }
 
-#viewer .performanceItem:not(:first-child) {
+#viewer .performanceItem {
   margin-top: 20px;
 }
 

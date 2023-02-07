@@ -6,3 +6,36 @@ body {
     Meiryo,
     sans-serif;
 }
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .appWrapper {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .menuWrapper {
+    display: none !important;
+  }
+
+  .editorWrapper {
+    display: none !important;
+    overflow: auto !important;
+  }
+
+  .viewerWrapper {
+    overflow: auto !important;
+  }
+
+  .isPageBreakBefore {
+    page-break-before: always !important;
+  }
+
+  .isPageBreakAfter {
+    page-break-after: always !important;
+  }
+}

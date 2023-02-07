@@ -62,12 +62,12 @@ const Viewer: React.FC<Props> = (props) => {
         </div>
       </div>
 
-      <div className="item ">
+      <div className="item isPageBreakAfter">
         <p className="itemName">PR</p>
         <p className="itemContent">{props.pr}</p>
       </div>
 
-      <div className="item">
+      <div className="item isPageBreakAfter">
         <p className="itemName">スキル</p>
         <div className="itemContent">
           {Object.keys(computedSkill).map((category, categoryIndex) => (
@@ -94,7 +94,12 @@ const Viewer: React.FC<Props> = (props) => {
         <p className="itemName">実績</p>
         <div className="itemContent">
           {props.performance.map((performanceItem, performanceIndex) => (
-            <div className="performanceList" key={performanceIndex}>
+            <div
+              className={`performanceWrapper ${
+                (performanceIndex + 1) % 2 === 0 ? "isPageBreakAfter" : ""
+              }`}
+              key={performanceIndex}
+            >
               <p className="performanceName">― {performanceItem.name} ―</p>
               <div className="performanceItem">
                 <div className="performanceImageList">
