@@ -21,8 +21,8 @@ export type Performance = {
 
 export type Profile = {
   name: Name,
-  role: Role[],
-  qualification: Qualification[],
+  role: Role,
+  qualification: Qualification,
   biography: Biography[],
   pr: Pr,
   skill: Skill[],

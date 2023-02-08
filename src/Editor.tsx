@@ -5,8 +5,8 @@ import autofillProfile from "./assets/profile.autofill.json";
 
 type Props = Profile & {
   setName: React.Dispatch<SetStateAction<string>>;
-  setRole: React.Dispatch<SetStateAction<string[]>>;
-  setQualification: React.Dispatch<SetStateAction<string[]>>;
+  setRole: React.Dispatch<SetStateAction<string>>;
+  setQualification: React.Dispatch<SetStateAction<string>>;
   setBiography: React.Dispatch<SetStateAction<Biography[]>>;
   setPr: React.Dispatch<SetStateAction<string>>;
   setSkill: React.Dispatch<React.SetStateAction<Skill[]>>;
@@ -26,13 +26,72 @@ const Editor: React.FC<Props> = (props) => {
 
   return (
     <div id="editor">
-      <code>{props.name}</code>
-      <code>{props.role}</code>
-      <code>{props.qualification}</code>
-      <code>{JSON.stringify(props.biography)}</code>
-      <code>{props.pr}</code>
-      <code>{JSON.stringify(props.skill)}</code>
-      <code>{JSON.stringify(props.performance)}</code>
+      <div className="formContent">
+        <label className="formLabel" htmlFor="name">
+          名前
+        </label>
+        <textarea
+          className="formTextArea"
+          id="name"
+          name="name"
+          value={props.name}
+          onChange={(e) => props.setName(e.target.value)}
+        />
+      </div>
+
+      <div className="formContent">
+        <label className="formLabel" htmlFor="name">
+          役割
+        </label>
+        <textarea
+          className="formTextArea"
+          id="role"
+          name="role"
+          value={props.role}
+          onChange={(e) => props.setRole(e.target.value)}
+        />
+      </div>
+
+      <div className="formContent">
+        <label className="formLabel" htmlFor="name">
+          資格
+        </label>
+        <textarea
+          className="formTextArea"
+          id="qualification"
+          name="qualification"
+          value={props.qualification}
+          onChange={(e) => props.setQualification(e.target.value)}
+        />
+      </div>
+
+      <div className="formContent">
+        <p className="formLabel">略歴</p>
+        <code>{JSON.stringify(props.biography)}</code>
+      </div>
+
+      <div className="formContent">
+        <label className="formLabel" htmlFor="pr">
+          PR
+        </label>
+        <textarea
+          className="formTextArea"
+          id="pr"
+          name="pr"
+          value={props.pr}
+          onChange={(e) => props.setPr(e.target.value)}
+        />
+      </div>
+
+      <div className="formContent">
+        <p className="formLabel">スキル</p>
+        <code>{JSON.stringify(props.skill)}</code>
+      </div>
+
+      <div className="formContent">
+        <p className="formLabel">実績</p>
+        <code>{JSON.stringify(props.performance)}</code>
+      </div>
     </div>
   );
 };

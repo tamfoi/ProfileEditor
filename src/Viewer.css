@@ -38,6 +38,7 @@
 
 #viewer .section1 {
   display: flex;
+  gap: 0px 20px;
 }
 
 #viewer .section1 .section1Left {

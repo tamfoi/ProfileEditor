@@ -16,8 +16,8 @@ import {
 
 const emptyProfile: Profile = {
   name: "",
-  role: [],
-  qualification: [],
+  role: "",
+  qualification: "",
   biography: [],
   pr: "",
   skill: [],
@@ -26,8 +26,8 @@ const emptyProfile: Profile = {
 
 function App() {
   const [name, setName] = useState<Name>(emptyProfile.name);
-  const [role, setRole] = useState<Role[]>(emptyProfile.role);
-  const [qualification, setQualification] = useState<Qualification[]>(
+  const [role, setRole] = useState<Role>(emptyProfile.role);
+  const [qualification, setQualification] = useState<Qualification>(
     emptyProfile.qualification
   );
   const [biography, setBiography] = useState<Biography[]>(

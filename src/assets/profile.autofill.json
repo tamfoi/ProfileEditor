@@ -1,15 +1,7 @@
 {
   "name": "テストさん",
-  "role": [
-    "役割1",
-    "役割2",
-    "役割3"
-  ],
-  "qualification": [
-    "xxx",
-    "yyy",
-    "zzz"
-  ],
+  "role": "役割1/役割2/役割3",
+  "qualification": "資格1/資格2/資格3",
   "biography": [
     {
       "period": "2010 ~ 2015",
