@@ -39,6 +39,8 @@ function App() {
     emptyProfile.performance
   );
 
+  const [isSecretMode, setIsSecretMode] = useState<boolean>(true);
+
   return (
     <div className="appWrapper">
       <div className="menuWrapper">
@@ -71,6 +73,7 @@ function App() {
           pr={pr}
           skill={skill}
           performance={performance}
+          isSecretMode={isSecretMode}
         />
       </div>
     </div>

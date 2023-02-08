@@ -2,7 +2,15 @@ import "./Viewer.css";
 import { Profile, Skill } from "./types/profile";
 import { useEffect, useState } from "react";
 
-type Props = Profile;
+type Props = Profile & {
+  isSecretMode: boolean;
+};
+
+const computeSecretText = (target: string, isSecretMode: boolean): string => {
+  if (!isSecretMode)
+    return target.replace(/<secret>(.+?)<st>(.+?)<\/st><\/secret>/g, "$1");
+  return target.replace(/<secret>(.+?)<st>(.+?)<\/st><\/secret>/g, "$2");
+};
 
 const Viewer: React.FC<Props> = (props) => {
   const computedSkill: { [key: string]: Skill[] } = props.skill.reduce(
@@ -16,21 +24,25 @@ const Viewer: React.FC<Props> = (props) => {
   );
 
   return (
-    <div id="viewer">
+    <div id="viewer" className={`${props.isSecretMode ? "isSecretMode" : ""}`}>
       <p className="head">プロフィール</p>
 
       <div className="section1">
         <div className="section1Left">
           <div className="item">
             <p className="itemName">名前</p>
-            <p className="itemContent">{props.name}</p>
+            <p className="itemContent">
+              {computeSecretText(props.name, props.isSecretMode)}
+            </p>
           </div>
           <div className="item">
             <p className="itemName">役割</p>
             <div className="itemContent">
               <ul>
                 {props.role.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    {computeSecretText(item, props.isSecretMode)}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -40,7 +52,9 @@ const Viewer: React.FC<Props> = (props) => {
             <div className="itemContent">
               <ul>
                 {props.qualification.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    {computeSecretText(item, props.isSecretMode)}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -53,8 +67,12 @@ const Viewer: React.FC<Props> = (props) => {
             <div className="biographyList">
               {props.biography.map((item, index) => (
                 <div className="biographyItem" key={index}>
-                  <div className="biographyPeriod">{item.period}</div>
-                  <div className="biographyOverview">{item.overview}</div>
+                  <div className="biographyPeriod">
+                    {computeSecretText(item.period, props.isSecretMode)}
+                  </div>
+                  <div className="biographyOverview">
+                    {computeSecretText(item.overview, props.isSecretMode)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -64,7 +82,9 @@ const Viewer: React.FC<Props> = (props) => {
 
       <div className="item isPageBreakAfter">
         <p className="itemName">PR</p>
-        <p className="itemContent">{props.pr}</p>
+        <p className="itemContent">
+          {computeSecretText(props.pr, props.isSecretMode)}
+        </p>
       </div>
 
       <div className="item isPageBreakAfter">
@@ -81,7 +101,7 @@ const Viewer: React.FC<Props> = (props) => {
                     }`}
                     key={index}
                   >
-                    {item.name}
+                    {computeSecretText(item.name, props.isSecretMode)}
                   </div>
                 ))}
               </div>
@@ -113,19 +133,28 @@ const Viewer: React.FC<Props> = (props) => {
                   <div className="performanceText">
                     <p className="performanceTextHead">概要</p>
                     <p className="performanceTextBody">
-                      {performanceItem.overview}
+                      {computeSecretText(
+                        performanceItem.overview,
+                        props.isSecretMode
+                      )}
                     </p>
                   </div>
                   <div className="performanceText">
                     <p className="performanceTextHead">体制</p>
                     <p className="performanceTextBody">
-                      {performanceItem.team}
+                      {computeSecretText(
+                        performanceItem.team,
+                        props.isSecretMode
+                      )}
                     </p>
                   </div>
                   <div className="performanceText">
                     <p className="performanceTextHead">ポイント</p>
                     <p className="performanceTextBody">
-                      {performanceItem.role}
+                      {computeSecretText(
+                        performanceItem.role,
+                        props.isSecretMode
+                      )}
                     </p>
                   </div>
                 </div>
