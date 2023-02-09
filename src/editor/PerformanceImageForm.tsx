@@ -16,14 +16,14 @@ import {
 } from "@dnd-kit/sortable";
 
 import { Performance } from "../types/profile";
-import PerformanceFormItem from "./PerformanceFormItem";
+import PerformanceImageFormItem from "./PerformanceImageFormItem";
 
 type Props = {
-  performance: Performance[];
+  performance: Performance;
   setPerformance: React.Dispatch<SetStateAction<Performance[]>>;
 };
 
-const PerformanceFrom: React.FC<Props> = (props) => {
+const PerformanceImageForm: React.FC<Props> = (props) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -40,32 +40,37 @@ const PerformanceFrom: React.FC<Props> = (props) => {
 
         if (over !== null && active.id !== over.id) {
           props.setPerformance((items) => {
-            const oldIndex = items.findIndex((item) => {
+            const controlIndex = items.findIndex((item) => {
+              return item.id === props.performance.id;
+            });
+            const oldIndex = items[controlIndex].image.findIndex((item) => {
               return item.id === active.id;
             });
-            const newIndex = items.findIndex((item) => {
+            const newIndex = items[controlIndex].image.findIndex((item) => {
               return item.id === over.id;
             });
 
-            return arrayMove(items, oldIndex, newIndex);
+            items[controlIndex].image = arrayMove(
+              items[controlIndex].image,
+              oldIndex,
+              newIndex
+            );
+
+            return [...items];
           });
         }
       }}
     >
       <SortableContext
-        items={props.performance}
+        items={props.performance.image}
         strategy={verticalListSortingStrategy}
       >
-        {props.performance.map((item) => (
-          <PerformanceFormItem
-            key={item.id}
-            performance={item}
-            setPerformance={props.setPerformance}
-          />
+        {props.performance.image.map((item) => (
+          <PerformanceImageFormItem key={item.id} performanceImage={item} />
         ))}
       </SortableContext>
     </DndContext>
   );
 };
 
-export default PerformanceFrom;
+export default PerformanceImageForm;

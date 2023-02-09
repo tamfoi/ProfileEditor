@@ -1,14 +1,14 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Biography } from "../types/profile";
+import { PerformanceImage } from "../types/profile";
 
 type Props = {
-  biography: Biography;
+  performanceImage: PerformanceImage;
 };
 
-const BiographyFormItem: React.FC<Props> = (props) => {
+const PerformanceImageFormItem: React.FC<Props> = (props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.biography.id });
+    useSortable({ id: props.performanceImage.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -17,7 +17,7 @@ const BiographyFormItem: React.FC<Props> = (props) => {
 
   return (
     <div ref={setNodeRef} style={style}>
-      {JSON.stringify(props.biography)}
+      <div>{props.performanceImage.src}</div>
       <button {...attributes} {...listeners}>
         dnd
       </button>
@@ -25,4 +25,4 @@ const BiographyFormItem: React.FC<Props> = (props) => {
   );
 };
 
-export default BiographyFormItem;
+export default PerformanceImageFormItem;

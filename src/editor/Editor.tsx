@@ -3,20 +3,6 @@ import "./Editor.css";
 import { Biography, Profile, Skill, Performance } from "../types/profile";
 import autofillProfile from "../assets/profile.autofill.json";
 
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import BiographyForm from "./BiographyForm";
 import SkillForm from "./SkillForm";
 import PerformanceFrom from "./PerformanceForm";
@@ -41,13 +27,6 @@ const Editor: React.FC<Props> = (props) => {
     props.setSkill(autofillProfile.skill);
     props.setPerformance(autofillProfile.performance);
   }, []);
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
 
   return (
     <div id="editor">

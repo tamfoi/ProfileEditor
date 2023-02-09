@@ -173,7 +173,7 @@ const Viewer: React.FC<Props> = (props) => {
                     </p>
                   </div>
                   <div className="performanceText">
-                    <p className="performanceTextHead">ポイント</p>
+                    <p className="performanceTextHead">役割</p>
                     <p className="performanceTextBody">
                       {computeText(performanceItem.role, {
                         isSecretMode: props.isSecretMode,
