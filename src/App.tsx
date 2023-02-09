@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import Menu from "./Menu";
-import Editor from "./Editor";
-import Viewer from "./Viewer";
+import Menu from "./menu/Menu";
+import Editor from "./editor/Editor";
+import Viewer from "./viewer/Viewer";
 import {
   Biography,
   Name,

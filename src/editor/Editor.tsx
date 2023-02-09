@@ -1,7 +1,25 @@
 import { useEffect, SetStateAction } from "react";
 import "./Editor.css";
-import { Biography, Profile, Skill, Performance } from "./types/profile";
-import autofillProfile from "./assets/profile.autofill.json";
+import { Biography, Profile, Skill, Performance } from "../types/profile";
+import autofillProfile from "../assets/profile.autofill.json";
+
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import BiographyForm from "./BiographyForm";
+import SkillForm from "./SkillForm";
+import PerformanceFrom from "./PerformanceForm";
 
 type Props = Profile & {
   setName: React.Dispatch<SetStateAction<string>>;
@@ -23,6 +41,13 @@ const Editor: React.FC<Props> = (props) => {
     props.setSkill(autofillProfile.skill);
     props.setPerformance(autofillProfile.performance);
   }, []);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   return (
     <div id="editor">
@@ -67,7 +92,12 @@ const Editor: React.FC<Props> = (props) => {
 
       <div className="formContent">
         <p className="formLabel">略歴</p>
-        <code>{JSON.stringify(props.biography)}</code>
+        <div>
+          <BiographyForm
+            biography={props.biography}
+            setBiography={props.setBiography}
+          />
+        </div>
       </div>
 
       <div className="formContent">
@@ -85,12 +115,19 @@ const Editor: React.FC<Props> = (props) => {
 
       <div className="formContent">
         <p className="formLabel">スキル</p>
-        <code>{JSON.stringify(props.skill)}</code>
+        <div>
+          <SkillForm skill={props.skill} setSkill={props.setSkill} />
+        </div>
       </div>
 
       <div className="formContent">
         <p className="formLabel">実績</p>
-        <code>{JSON.stringify(props.performance)}</code>
+        <div>
+          <PerformanceFrom
+            performance={props.performance}
+            setPerformance={props.setPerformance}
+          />
+        </div>
       </div>
     </div>
   );

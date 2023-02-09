@@ -1,5 +1,5 @@
 import "./Viewer.css";
-import { Profile, Skill } from "./types/profile";
+import { Profile, Skill } from "../types/profile";
 import React, { useEffect, useState } from "react";
 
 type Props = Profile & {
@@ -148,7 +148,10 @@ const Viewer: React.FC<Props> = (props) => {
                 <div className="performanceImageList">
                   {performanceItem.image.map((imageItem, imageIndex) => (
                     <div className="performanceImageItem" key={imageIndex}>
-                      <img className="performanceImageBody" src={imageItem} />
+                      <img
+                        className="performanceImageBody"
+                        src={imageItem.src}
+                      />
                     </div>
                   ))}
                 </div>
