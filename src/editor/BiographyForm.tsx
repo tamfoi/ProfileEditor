@@ -57,7 +57,11 @@ const BiographyForm: React.FC<Props> = (props) => {
         strategy={verticalListSortingStrategy}
       >
         {props.biography.map((item) => (
-          <BiographyFormItem key={item.id} biography={item} />
+          <BiographyFormItem
+            key={item.id}
+            biography={item}
+            setBiography={props.setBiography}
+          />
         ))}
       </SortableContext>
     </DndContext>

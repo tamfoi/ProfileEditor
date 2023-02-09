@@ -6,6 +6,7 @@ import autofillProfile from "../assets/profile.autofill.json";
 import BiographyForm from "./BiographyForm";
 import SkillForm from "./SkillForm";
 import PerformanceFrom from "./PerformanceForm";
+import AddIcon from "../components/AddIcon";
 
 type Props = Profile & {
   setName: React.Dispatch<SetStateAction<string>>;
@@ -44,7 +45,7 @@ const Editor: React.FC<Props> = (props) => {
       </div>
 
       <div className="formContent">
-        <label className="formLabel" htmlFor="name">
+        <label className="formLabel" htmlFor="role">
           役割
         </label>
         <textarea
@@ -57,7 +58,7 @@ const Editor: React.FC<Props> = (props) => {
       </div>
 
       <div className="formContent">
-        <label className="formLabel" htmlFor="name">
+        <label className="formLabel" htmlFor="qualification">
           資格
         </label>
         <textarea
@@ -70,7 +71,26 @@ const Editor: React.FC<Props> = (props) => {
       </div>
 
       <div className="formContent">
-        <p className="formLabel">略歴</p>
+        <div className="formLabelWrapper">
+          <div className="formLabel">略歴</div>
+          <div
+            onClick={() => {
+              props.setBiography((items) => {
+                return [
+                  ...items,
+                  {
+                    id: new Date().getTime().toString(16),
+                    period: "",
+                    overview: "",
+                  },
+                ];
+              });
+            }}
+          >
+            <AddIcon />
+          </div>
+        </div>
+
         <div>
           <BiographyForm
             biography={props.biography}
