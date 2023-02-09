@@ -113,7 +113,26 @@ const Editor: React.FC<Props> = (props) => {
       </div>
 
       <div className="formContent">
-        <p className="formLabel">スキル</p>
+        <div className="formLabelWrapper">
+          <div className="formLabel">スキル</div>
+          <div
+            onClick={() => {
+              props.setSkill((items) => {
+                return [
+                  ...items,
+                  {
+                    id: new Date().getTime().toString(16),
+                    category: "",
+                    name: "",
+                    workExperience: false,
+                  },
+                ];
+              });
+            }}
+          >
+            <AddIcon />
+          </div>
+        </div>
         <div>
           <SkillForm skill={props.skill} setSkill={props.setSkill} />
         </div>

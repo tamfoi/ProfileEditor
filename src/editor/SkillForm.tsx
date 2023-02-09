@@ -57,7 +57,7 @@ const SkillForm: React.FC<Props> = (props) => {
         strategy={verticalListSortingStrategy}
       >
         {props.skill.map((item) => (
-          <SkillFormItem key={item.id} skill={item} />
+          <SkillFormItem key={item.id} skill={item} setSkill={props.setSkill} />
         ))}
       </SortableContext>
     </DndContext>
