@@ -15,8 +15,46 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { Performance, PerformanceImage } from "../types/profile";
+import { css } from "@emotion/react";
+
+import { Performance } from "../types/profile";
 import PerformanceImageFormItem from "./PerformanceImageFormItem";
+
+const styles = {
+  addImageButton: css`
+    position: relative;
+    display: block;
+    width: 320px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    background-color: gray;
+    font-weight: bold;
+    line-height: 1;
+    padding: 10px;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translate(0%, -50%);
+      background-color: white;
+    }
+    &::before {
+      width: 10px;
+      height: 2px;
+      left: 10px;
+    }
+    &::after {
+      width: 2px;
+      height: 10px;
+      left: 14px;
+    }
+  `,
+};
 
 type Props = {
   performance: Performance;
@@ -113,24 +151,24 @@ const PerformanceImageForm: React.FC<Props> = (props) => {
         </SortableContext>
       </DndContext>
       <div>
-        <div>
-          <label htmlFor={`addImage-${props.performance.id}`}>hoge</label>
-          <input
-            hidden
-            id={`addImage-${props.performance.id}`}
-            name={`addImage-${props.performance.id}`}
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={(e) => {
-              if (
-                e.currentTarget.files &&
-                e.currentTarget.files?.length !== 0
-              ) {
-                setImagePath(URL.createObjectURL(e.currentTarget.files[0]));
-              }
-            }}
-          />
-        </div>
+        <label
+          css={styles.addImageButton}
+          htmlFor={`addImage-${props.performance.id}`}
+        >
+          画像を追加する
+        </label>
+        <input
+          hidden
+          id={`addImage-${props.performance.id}`}
+          name={`addImage-${props.performance.id}`}
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={(e) => {
+            if (e.currentTarget.files && e.currentTarget.files?.length !== 0) {
+              setImagePath(URL.createObjectURL(e.currentTarget.files[0]));
+            }
+          }}
+        />
       </div>
     </div>
   );

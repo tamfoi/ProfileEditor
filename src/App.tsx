@@ -62,6 +62,8 @@ function App() {
           setSkill={setSkill}
           performance={performance}
           setPerformance={setPerformance}
+          isSecretMode={isSecretMode}
+          setIsSecretMode={setIsSecretMode}
         />
       </div>
       <div className="viewerWrapper">

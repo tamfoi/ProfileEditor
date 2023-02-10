@@ -7,6 +7,7 @@ import BiographyForm from "./BiographyForm";
 import SkillForm from "./SkillForm";
 import PerformanceFrom from "./PerformanceForm";
 import AddIcon from "../components/AddIcon";
+import CheckButton from "../components/CheckButton";
 
 type Props = Profile & {
   setName: React.Dispatch<SetStateAction<string>>;
@@ -16,6 +17,8 @@ type Props = Profile & {
   setPr: React.Dispatch<SetStateAction<string>>;
   setSkill: React.Dispatch<React.SetStateAction<Skill[]>>;
   setPerformance: React.Dispatch<React.SetStateAction<Performance[]>>;
+  isSecretMode: boolean;
+  setIsSecretMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Editor: React.FC<Props> = (props) => {
@@ -31,6 +34,16 @@ const Editor: React.FC<Props> = (props) => {
 
   return (
     <div id="editor">
+      <div className="formContent">
+        <CheckButton
+          initialValue={props.isSecretMode}
+          onChange={(value: boolean) => {
+            props.setIsSecretMode(value);
+          }}
+        >
+          シークレットモード
+        </CheckButton>
+      </div>
       <div className="formContent">
         <label className="formLabel" htmlFor="name">
           名前
