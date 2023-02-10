@@ -149,12 +149,7 @@ const Editor: React.FC<Props> = (props) => {
                   {
                     id: new Date().getTime().toString(16),
                     name: "",
-                    image: [
-                      {
-                        id: new Date().getTime().toString(16),
-                        src: "",
-                      },
-                    ],
+                    image: [],
                     overview: "",
                     team: "",
                     role: "",
