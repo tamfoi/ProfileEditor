@@ -5,6 +5,35 @@ import CheckButton from "../components/CheckButton";
 import DraggableIcon from "../components/DraggableIcon";
 import RemoveIcon from "../components/RemoveIcon";
 import { Skill } from "../types/profile";
+import { css } from "@emotion/react";
+
+const styles = {
+  root: css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px 20px;
+
+    &:not(:first-of-type) {
+      margin-top: 15px;
+    }
+  `,
+  category: css`
+    flex: 1;
+  `,
+  name: css`
+    flex: 1;
+  `,
+  workExperience: css`
+    width: 160px;
+  `,
+  textarea: css`
+    display: block;
+    width: 100%;
+    height: 50px;
+    resize: vertical;
+  `,
+};
 
 type Props = {
   skill: Skill;
@@ -21,7 +50,7 @@ const SkillFormItem: React.FC<Props> = (props) => {
   };
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <div css={styles.root} ref={setNodeRef} style={style}>
       <div
         onClick={() => {
           props.setSkill((items) => {
@@ -33,9 +62,9 @@ const SkillFormItem: React.FC<Props> = (props) => {
         <RemoveIcon />
       </div>
 
-      <div /* css={styles.period} */>
+      <div css={styles.category}>
         <textarea
-          /* css={styles.textarea} */
+          css={styles.textarea}
           value={props.skill.category}
           onChange={(e) => {
             props.setSkill((items) => {
@@ -50,9 +79,9 @@ const SkillFormItem: React.FC<Props> = (props) => {
         />
       </div>
 
-      <div /* css={styles.overview} */>
+      <div css={styles.name}>
         <textarea
-          /* css={styles.textarea} */
+          css={styles.textarea}
           value={props.skill.name}
           onChange={(e) => {
             props.setSkill((items) => {
@@ -67,7 +96,7 @@ const SkillFormItem: React.FC<Props> = (props) => {
         />
       </div>
 
-      <div>
+      <div css={styles.workExperience}>
         <CheckButton
           initialValue={props.skill.workExperience}
           onChange={(value: boolean) => {
