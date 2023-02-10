@@ -1,6 +1,8 @@
 import "./Menu.css";
 
 import { css } from "@emotion/react";
+import { Profile } from "../types/profile";
+import { useEffect, useState } from "react";
 
 const styles = {
   iconButtonList: css`
@@ -10,6 +12,7 @@ const styles = {
     gap: 20px 0px;
   `,
   iconButton: css`
+    display: block;
     position: relative;
     width: 45px;
     height: 45px;
@@ -29,14 +32,58 @@ const styles = {
   `,
 };
 
-function Menu() {
+type Props = {
+  onImportJson: (value: Profile) => void;
+  onExportClick: () => void;
+};
+
+const Menu: React.FC<Props> = (props) => {
+  const [path, setPath] = useState<string>("");
+
+  useEffect(() => {
+    (async () => {
+      if (!path) return;
+      try {
+        //** TODO: async await */
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+          if (!xhr.response) return;
+          props.onImportJson(xhr.response);
+        };
+        xhr.open("GET", path);
+        xhr.responseType = "json";
+        xhr.send();
+      } catch {
+        alert("ファイルが読み込めませんでした");
+      }
+    })();
+  }, [path, setPath]);
+
   return (
     <div id="menu">
       <div css={styles.iconButtonList}>
-        <div css={styles.iconButton} title={"インポート"}>
+        <label css={styles.iconButton} title={"インポート"} htmlFor="import">
           <span css={styles.iconButtonBody}>&#x1f4e5;</span>
-        </div>
-        <div css={styles.iconButton} title={"エクスポート"}>
+        </label>
+        <input
+          hidden
+          id="import"
+          name="import"
+          type="file"
+          accept=".json"
+          onChange={(e) => {
+            if (e.currentTarget.files && e.currentTarget.files?.length !== 0) {
+              setPath(URL.createObjectURL(e.currentTarget.files[0]));
+            }
+          }}
+        />
+        <div
+          css={styles.iconButton}
+          title={"エクスポート"}
+          onClick={() => {
+            props.onExportClick();
+          }}
+        >
           <span css={styles.iconButtonBody}>&#x1f4e4;</span>
         </div>
         <div
@@ -67,6 +114,6 @@ function Menu() {
       </div>
     </div>
   );
-}
+};
 
 export default Menu;

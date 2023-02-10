@@ -22,7 +22,7 @@ type Props = Profile & {
 };
 
 const Editor: React.FC<Props> = (props) => {
-  useEffect(() => {
+  /* useEffect(() => {
     props.setName(autofillProfile.name);
     props.setRole(autofillProfile.role);
     props.setQualification(autofillProfile.qualification);
@@ -30,7 +30,7 @@ const Editor: React.FC<Props> = (props) => {
     props.setPr(autofillProfile.pr);
     props.setSkill(autofillProfile.skill);
     props.setPerformance(autofillProfile.performance);
-  }, []);
+  }, []); */
 
   return (
     <div id="editor">

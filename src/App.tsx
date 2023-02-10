@@ -44,7 +44,33 @@ function App() {
   return (
     <div className="appWrapper">
       <div className="menuWrapper">
-        <Menu />
+        <Menu
+          onImportJson={(value) => {
+            setName(value.name);
+            setRole(value.role);
+            setQualification(value.qualification);
+            setBiography(value.biography);
+            setPr(value.pr);
+            setSkill(value.skill);
+            setPerformance(value.performance);
+          }}
+          onExportClick={() => {
+            const jsonString = JSON.stringify({
+              name,
+              role,
+              qualification,
+              biography,
+              pr,
+              skill,
+              performance,
+            });
+            const jsonBlob = new Blob([jsonString], { type: "text/plan" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(jsonBlob);
+            link.download = "profile.json";
+            link.click();
+          }}
+        />
       </div>
       <div className="editorWrapper">
         <Editor
