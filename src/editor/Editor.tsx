@@ -139,7 +139,33 @@ const Editor: React.FC<Props> = (props) => {
       </div>
 
       <div className="formContent">
-        <p className="formLabel">実績</p>
+        <div className="formLabelWrapper">
+          <div className="formLabel">実績</div>
+          <div
+            onClick={() => {
+              props.setPerformance((items) => {
+                return [
+                  ...items,
+                  {
+                    id: new Date().getTime().toString(16),
+                    name: "",
+                    image: [
+                      {
+                        id: new Date().getTime().toString(16),
+                        src: "",
+                      },
+                    ],
+                    overview: "",
+                    team: "",
+                    role: "",
+                  },
+                ];
+              });
+            }}
+          >
+            <AddIcon />
+          </div>
+        </div>
         <div>
           <PerformanceFrom
             performance={props.performance}

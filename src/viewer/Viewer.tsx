@@ -143,7 +143,7 @@ const Viewer: React.FC<Props> = (props) => {
               }`}
               key={performanceIndex}
             >
-              <p className="performanceName">― {performanceItem.name} ―</p>
+              <p className="performanceName">{performanceItem.name}</p>
               <div className="performanceItem">
                 <div className="performanceImageList">
                   {performanceItem.image.map((imageItem, imageIndex) => (
