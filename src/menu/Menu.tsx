@@ -7,6 +7,9 @@ import ImportIcon from "../components/ImportIcon";
 import ExportIcon from "../components/ExportIcon";
 import QuestionIcon from "../components/QuestionIcon";
 import GearIcon from "../components/GearIcon";
+import OverlayWindow from "../components/OverlayWindow";
+import Question from "./Question";
+import Setting from "./Setting";
 
 const styles = {
   iconButtonList: css`
@@ -40,6 +43,9 @@ type Props = {
 
 const Menu: React.FC<Props> = (props) => {
   const [path, setPath] = useState<string>("");
+
+  const [opnedQuestion, setOpnedQuestion] = useState<boolean>(false);
+  const [opendSetting, setOpendSetting] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -99,14 +105,7 @@ const Menu: React.FC<Props> = (props) => {
           css={styles.iconButton}
           title={"ドキュメント"}
           onClick={() => {
-            alert(`
-▼シークレットモードについて：
-
-1.テキストが下記の記述で切り替わります
-<secret>非シークレットモード時に表示されるテキスト<st>シークレットモード時に表示されるテキスト</st></secret>
-
-2.実績の画像にボカシが入るようになります
-          `);
+            setOpnedQuestion(true);
           }}
         >
           <span css={styles.iconButtonBody}>
@@ -117,13 +116,31 @@ const Menu: React.FC<Props> = (props) => {
           css={styles.iconButton}
           title={"設定"}
           onClick={() => {
-            alert(`未実装`);
+            setOpendSetting(true);
           }}
         >
           <span css={styles.iconButtonBody}>
             <GearIcon />
           </span>
         </div>
+      </div>
+      <div>
+        <OverlayWindow
+          isOpen={opnedQuestion}
+          onClose={() => {
+            setOpnedQuestion(false);
+          }}
+        >
+          <Question />
+        </OverlayWindow>
+        <OverlayWindow
+          isOpen={opendSetting}
+          onClose={() => {
+            setOpendSetting(false);
+          }}
+        >
+          <Setting />
+        </OverlayWindow>
       </div>
     </div>
   );
