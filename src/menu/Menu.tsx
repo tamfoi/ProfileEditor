@@ -3,6 +3,10 @@ import "./Menu.css";
 import { css } from "@emotion/react";
 import { Profile } from "../types/profile";
 import { useEffect, useState } from "react";
+import ImportIcon from "../components/ImportIcon";
+import ExportIcon from "../components/ExportIcon";
+import QuestionIcon from "../components/QuestionIcon";
+import GearIcon from "../components/GearIcon";
 
 const styles = {
   iconButtonList: css`
@@ -26,9 +30,6 @@ const styles = {
     left: 50%;
     transform: translate(-50%, -50%);
     display: block;
-    color: white;
-    font-size: 28px;
-    line-height: 1;
   `,
 };
 
@@ -62,8 +63,14 @@ const Menu: React.FC<Props> = (props) => {
   return (
     <div id="menu">
       <div css={styles.iconButtonList}>
-        <label css={styles.iconButton} title={"インポート"} htmlFor="import">
-          <span css={styles.iconButtonBody}>&#x1f4e5;</span>
+        <label
+          css={styles.iconButton}
+          title={"バックアップをインポート"}
+          htmlFor="import"
+        >
+          <span css={styles.iconButtonBody}>
+            <ImportIcon />
+          </span>
         </label>
         <input
           hidden
@@ -79,12 +86,14 @@ const Menu: React.FC<Props> = (props) => {
         />
         <div
           css={styles.iconButton}
-          title={"エクスポート"}
+          title={"バックアップをエクスポート"}
           onClick={() => {
             props.onExportClick();
           }}
         >
-          <span css={styles.iconButtonBody}>&#x1f4e4;</span>
+          <span css={styles.iconButtonBody}>
+            <ExportIcon />
+          </span>
         </div>
         <div
           css={styles.iconButton}
@@ -100,7 +109,9 @@ const Menu: React.FC<Props> = (props) => {
           `);
           }}
         >
-          <span css={styles.iconButtonBody}>&#x1f4d6;</span>
+          <span css={styles.iconButtonBody}>
+            <QuestionIcon />
+          </span>
         </div>
         <div
           css={styles.iconButton}
@@ -109,7 +120,9 @@ const Menu: React.FC<Props> = (props) => {
             alert(`未実装`);
           }}
         >
-          <span css={styles.iconButtonBody}>&#x2699;</span>
+          <span css={styles.iconButtonBody}>
+            <GearIcon />
+          </span>
         </div>
       </div>
     </div>
